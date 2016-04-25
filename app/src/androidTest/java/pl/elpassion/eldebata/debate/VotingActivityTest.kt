@@ -9,22 +9,20 @@ import pl.elpassion.eldebata.R
 import pl.elpassion.eldebata.common.hasText
 import pl.elpassion.eldebata.common.onId
 import pl.elpassion.eldebata.common.rule
-import pl.elpassion.eldebata.debate.api.*
+import pl.elpassion.eldebata.debate.api.DebateApi
+import pl.elpassion.eldebata.debate.api.DebateApiProvider
+import pl.elpassion.eldebata.factories.DebateDataFactory.debateTopic
+import pl.elpassion.eldebata.factories.DebateDataFactory.newDebateData
 import rx.Observable
 import org.mockito.Mockito.`when` as on
 
 class VotingActivityTest {
 
     val api = Mockito.mock(DebateApi::class.java)
-    val debateData = DebateData(topic = "Czy luzne podejscie do pracy grozi sukcesu firmy?", answers = Answers(
-            positive = Answer(1, "Grozi"),
-            negative = Answer(2, "Nie grozi"),
-            neutral = Answer(4, "Nie wiem")
-    ))
 
     @JvmField @Rule
     val rule = rule<VotingActivity> {
-        on(api.getDebateData()).thenReturn(Observable.just(debateData))
+        on(api.getDebateData()).thenReturn(Observable.just(newDebateData()))
         DebateApiProvider.override = api
     }
 
@@ -35,6 +33,6 @@ class VotingActivityTest {
 
     @Test
     fun shouldHaveCorrectTopicAtTheStart() {
-        onId(R.id.voting_activity_debate_topic).hasText(debateData.topic)
+        onId(R.id.voting_activity_debate_topic).hasText(debateTopic)
     }
 }
