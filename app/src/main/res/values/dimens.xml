@@ -5,4 +5,7 @@
     <dimen name="default_padding_value">16dp</dimen>
     <dimen name="voting_activity_debate_topic_padding_vertical">45dp</dimen>
     <dimen name="voting_activity_debate_topic_text_size">26sp</dimen>
+    <dimen name="voting_activity_vote_button_horizontal_margin">50dp</dimen>
+    <dimen name="gravity_activity_vote_button_vertical_padding">30dp</dimen>
+    <dimen name="voting_activity_vote_button_text_size">30sp</dimen>
 </resources>
