@@ -8,6 +8,8 @@ import pl.elpassion.eldebata.R
 import pl.elpassion.eldebata.base.BaseActivity
 import pl.elpassion.eldebata.base.retrofit.applySchedulers
 import pl.elpassion.eldebata.login.api.LoginApiProvider
+import pl.elpassion.eldebata.login.api.LoginResponse
+import pl.elpassion.eldebata.prefs.AuthToken
 
 class LoginActivity : BaseActivity() {
 
@@ -25,8 +27,12 @@ class LoginActivity : BaseActivity() {
         submitButton.setOnClickListener {
             api.login(codeInput.text.toString())
                     .applySchedulers()
-                    .subscribe({}, onLoginFailure)
+                    .subscribe(onLoginSuccess, onLoginFailure)
         }
+    }
+
+    private val onLoginSuccess = { response: LoginResponse -> Unit
+        AuthToken.save("")
     }
 
     private val onLoginFailure = { throwable: Throwable -> Unit
