@@ -13,6 +13,7 @@ import pl.elpassion.eldebata.debate.api.DebateApi
 import pl.elpassion.eldebata.debate.api.DebateApiProvider
 import pl.elpassion.eldebata.factories.DebateDataFactory.debateTopic
 import pl.elpassion.eldebata.factories.DebateDataFactory.negativeAnswer
+import pl.elpassion.eldebata.factories.DebateDataFactory.neutralAnswer
 import pl.elpassion.eldebata.factories.DebateDataFactory.newDebateData
 import pl.elpassion.eldebata.factories.DebateDataFactory.positiveAnswer
 import rx.Observable
@@ -46,5 +47,10 @@ class VotingActivityTest {
     @Test
     fun shouldHaveNegativeVoteButtonWithCorrectName() {
         onId(R.id.voting_activity_negative_vote_button).hasText(negativeAnswer)
+    }
+
+    @Test
+    fun shouldHaveNeutralVoteButtonWithCorrectName() {
+        onId(R.id.voting_activity_neutral_vote_button).hasText(neutralAnswer)
     }
 }

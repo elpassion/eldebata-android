@@ -16,6 +16,7 @@ class VotingActivity : BaseActivity() {
     val topic by lazy { findViewById(R.id.voting_activity_debate_topic) as TextView }
     val positiveVote by lazy { findViewById(R.id.voting_activity_positive_vote_button) as TextView }
     val negativeVote by lazy { findViewById(R.id.voting_activity_negative_vote_button) as TextView }
+    val neutralVote by lazy { findViewById(R.id.voting_activity_neutral_vote_button) as TextView }
 
     companion object {
         fun start(context: Context) {
@@ -34,6 +35,7 @@ class VotingActivity : BaseActivity() {
         topic.text = it.topic
         positiveVote.text = it.answers.positive.value
         negativeVote.text = it.answers.negative.value
+        neutralVote.text = it.answers.neutral.value
     }
 
     val onGetDebateDataFailure: (Throwable) -> Unit = {}
