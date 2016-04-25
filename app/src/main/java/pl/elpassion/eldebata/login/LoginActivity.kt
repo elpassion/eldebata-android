@@ -31,11 +31,11 @@ class LoginActivity : BaseActivity() {
         }
     }
 
-    private val onLoginSuccess = { response: LoginResponse -> Unit
-        AuthToken.save(response.authToken)
+    private val onLoginSuccess: (LoginResponse) -> Unit = {
+        AuthToken.save(it.authToken)
     }
 
-    private val onLoginFailure = { throwable: Throwable -> Unit
+    private val onLoginFailure: (Throwable) -> Unit = {
         val snackbar = Snackbar.make(submitButton, R.string.login_activity_login_failure, Snackbar.LENGTH_INDEFINITE)
         snackbar.setAction(R.string.login_activity_login_failure_action, { snackbar.dismiss() })
                 .show()
