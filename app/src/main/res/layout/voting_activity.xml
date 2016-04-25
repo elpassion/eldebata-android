@@ -11,12 +11,12 @@
         android:orientation="vertical">
 
         <TextView
-            android:paddingTop="50dp"
-            android:paddingBottom="50dp"
-            android:paddingLeft="16dp"
-            android:paddingRight="16dp"
+            android:paddingTop="@dimen/voting_activity_debate_topic_padding_vertical"
+            android:paddingBottom="@dimen/voting_activity_debate_topic_padding_vertical"
+            android:paddingLeft="@dimen/default_padding_value"
+            android:paddingRight="@dimen/default_padding_value"
             android:gravity="center"
-            android:textSize="26sp"
+            android:textSize="@dimen/voting_activity_debate_topic_text_size"
             android:id="@+id/voting_activity_debate_topic"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
