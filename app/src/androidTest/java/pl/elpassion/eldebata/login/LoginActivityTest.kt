@@ -1,16 +1,18 @@
 package pl.elpassion.eldebata.login
 
-import android.support.test.espresso.Espresso.closeSoftKeyboard
 import org.junit.Rule
 import org.junit.Test
 import org.mockito.Mockito
 import org.mockito.Mockito.*
-import org.mockito.Mockito.`when` as on
 import pl.elpassion.eldebata.R
-import pl.elpassion.eldebata.common.*
+import pl.elpassion.eldebata.common.hasText
+import pl.elpassion.eldebata.common.inputLayoutHasHint
+import pl.elpassion.eldebata.common.onId
+import pl.elpassion.eldebata.common.rule
 import pl.elpassion.eldebata.login.api.LoginApi
 import pl.elpassion.eldebata.login.api.LoginApiProvider
 import rx.Observable
+import org.mockito.Mockito.`when` as on
 
 class LoginActivityTest {
 
