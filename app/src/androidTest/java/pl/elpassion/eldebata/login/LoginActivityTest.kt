@@ -34,10 +34,20 @@ class LoginActivityTest {
 
     @Test
     fun shouldMakeCallToApiWithCorrectPinWhenLoginButtonIsPressed() {
-        onId(R.id.login_activity_pin_number_edit_text).typeText("12345")
+        loginWithCode("12345")
+        verify(api, times(1)).login("12345")
+    }
+
+    @Test
+    fun shouldShowErrorWhenApiCALLFails() {
+        loginWithCode("12345")
+        onId(R.id.snackbar_text).hasText(R.string.login_activity_login_failure)
+    }
+
+    private fun loginWithCode(code: String) {
+        onId(R.id.login_activity_pin_number_edit_text).typeText(code)
         closeSoftKeyboard()
         onId(R.id.login_activity_login_button).click()
-        verify(api, times(1)).login("12345")
     }
 
 }

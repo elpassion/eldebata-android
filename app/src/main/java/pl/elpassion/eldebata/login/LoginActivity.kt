@@ -1,6 +1,7 @@
 package pl.elpassion.eldebata.login
 
 import android.os.Bundle
+import android.support.design.widget.Snackbar
 import android.view.View
 import android.widget.EditText
 import pl.elpassion.eldebata.R
@@ -17,10 +18,20 @@ class LoginActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.login_activity)
+        setUpSubmitButton()
+    }
+
+    private fun setUpSubmitButton() {
         submitButton.setOnClickListener {
             api.login(codeInput.text.toString())
-            .applySchedulers()
-            .subscribe({},{})
+                    .applySchedulers()
+                    .subscribe({}, onLoginFailure)
         }
+    }
+
+    private val onLoginFailure = { throwable: Throwable -> Unit
+        val snackbar = Snackbar.make(submitButton, R.string.login_activity_login_failure, Snackbar.LENGTH_INDEFINITE)
+        snackbar.setAction(R.string.login_activity_login_failure_action, { snackbar.dismiss() })
+                .show()
     }
 }
