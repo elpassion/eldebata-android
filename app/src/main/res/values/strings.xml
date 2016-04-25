@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">ElDebata</string>
     <string name="login_activity_pin_number_hint">Pin number</string>
+    <string name="login_activity_login_button_label">Login</string>
 </resources>
