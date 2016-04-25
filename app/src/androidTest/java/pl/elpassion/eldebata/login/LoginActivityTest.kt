@@ -1,10 +1,10 @@
 package pl.elpassion.eldebata.login
 
-import android.support.test.espresso.Espresso
-import android.support.test.espresso.matcher.ViewMatchers.withText
 import org.junit.Rule
 import org.junit.Test
-import pl.elpassion.eldebata.common.isDisplayed
+import pl.elpassion.eldebata.R
+import pl.elpassion.eldebata.common.inputLayoutHasHint
+import pl.elpassion.eldebata.common.onId
 import pl.elpassion.eldebata.common.rule
 
 class LoginActivityTest {
@@ -13,8 +13,8 @@ class LoginActivityTest {
     val rule = rule<LoginActivity>()
 
     @Test
-    fun initTest() {
-        Espresso.onView(withText("ElDebata!")).isDisplayed()
+    fun shouldHaveEditTextToInsertDebatesPinNumber() {
+        onId(R.id.login_activity_pin_number).inputLayoutHasHint(R.string.login_activity_pin_number_hint)
     }
 
 }
