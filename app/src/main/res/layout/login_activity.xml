@@ -3,10 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".login.LoginActivity">
 
     <LinearLayout
@@ -14,6 +10,11 @@
         android:layout_height="match_parent"
         android:gravity="center"
         android:orientation="vertical">
+
+        <View
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="0dp"/>
 
         <android.support.design.widget.TextInputLayout
             android:id="@+id/login_activity_pin_number"
@@ -30,10 +31,16 @@
 
         </android.support.design.widget.TextInputLayout>
 
+        <View
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="0dp"/>
+
         <TextView
+            android:clickable="true"
             android:layout_marginTop="@dimen/activity_vertical_margin"
             android:textColor="@color/colorTextWhite"
-            android:background="@color/colorPrimary"
+            android:background="@drawable/button_selector"
             android:padding="@dimen/default_padding_value"
             android:gravity="center"
             android:id="@+id/login_activity_login_button"
