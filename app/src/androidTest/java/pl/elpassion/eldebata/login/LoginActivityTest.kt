@@ -18,7 +18,7 @@ class LoginActivityTest {
 
     @JvmField @Rule
     val rule = rule<LoginActivity> {
-        on(api.login(anyString())).thenReturn(Observable.error(Exception()))
+        on(api.login(anyString())).thenReturn(Observable.never())
         LoginApiProvider.override = api
     }
 
@@ -36,18 +36,6 @@ class LoginActivityTest {
     fun shouldMakeCallToApiWithCorrectPinWhenLoginButtonIsPressed() {
         loginWithCode("12345")
         verify(api, times(1)).login("12345")
-    }
-
-    @Test
-    fun shouldShowErrorWhenApiCALLFails() {
-        loginWithCode("12345")
-        onId(R.id.snackbar_text).hasText(R.string.login_activity_login_failure)
-    }
-
-    private fun loginWithCode(code: String) {
-        onId(R.id.login_activity_pin_number_edit_text).typeText(code)
-        closeSoftKeyboard()
-        onId(R.id.login_activity_login_button).click()
     }
 
 }
