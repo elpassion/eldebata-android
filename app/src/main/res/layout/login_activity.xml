@@ -3,13 +3,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".login.LoginActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <View
             android:layout_weight="1"
@@ -22,6 +24,7 @@
             android:layout_height="wrap_content">
 
             <EditText
+                android:id="@+id/login_activity_pin_number_edit_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -38,7 +41,6 @@
 
         <TextView
             android:clickable="true"
-            android:layout_marginTop="@dimen/activity_vertical_margin"
             android:textColor="@color/colorTextWhite"
             android:background="@drawable/button_selector"
             android:padding="@dimen/default_padding_value"
