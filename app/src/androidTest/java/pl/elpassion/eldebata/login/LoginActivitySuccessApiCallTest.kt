@@ -31,6 +31,12 @@ class LoginActivitySuccessApiCallTest {
         Assert.assertTrue(AuthToken.isLoggedIn())
     }
 
+    @Test
+    fun shouldReallySaveReturnedAuthToken() {
+        loginWithCode("12345")
+        Assert.assertEquals("authToken", AuthToken.read())
+    }
+
     private fun loginWithCode(code: String) {
         onId(R.id.login_activity_pin_number_edit_text).typeText(code)
         closeSoftKeyboard()

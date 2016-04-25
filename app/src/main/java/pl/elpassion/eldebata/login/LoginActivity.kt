@@ -32,7 +32,7 @@ class LoginActivity : BaseActivity() {
     }
 
     private val onLoginSuccess = { response: LoginResponse -> Unit
-        AuthToken.save("")
+        AuthToken.save(response.authToken)
     }
 
     private val onLoginFailure = { throwable: Throwable -> Unit
