@@ -3,6 +3,8 @@ package pl.elpassion.eldebata.debate
 import org.junit.Rule
 import org.junit.Test
 import org.mockito.Mockito
+import org.mockito.Mockito.times
+import org.mockito.Mockito.verify
 import pl.elpassion.eldebata.R
 import pl.elpassion.eldebata.common.hasText
 import pl.elpassion.eldebata.common.onId
@@ -24,6 +26,11 @@ class VotingActivityTest {
     val rule = rule<VotingActivity> {
         on(api.getDebateData()).thenReturn(Observable.just(debateData))
         DebateApiProvider.override = api
+    }
+
+    @Test
+    fun apiShouldBeCalledAtTheActivityStart() {
+        verify(api, times(1)).getDebateData()
     }
 
     @Test
