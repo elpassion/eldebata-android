@@ -1,6 +1,7 @@
 package pl.elpassion.eldebata.login
 
 import android.os.Bundle
+import android.support.design.widget.CoordinatorLayout
 import android.support.design.widget.Snackbar
 import android.util.Log
 import android.view.View
@@ -16,6 +17,7 @@ class LoginActivity : BaseActivity() {
 
     private val submitButton by lazy { findViewById(R.id.login_activity_login_button) as View }
     private val codeInput by lazy { findViewById(R.id.login_activity_pin_number_edit_text) as EditText }
+    private val coordinator by lazy { findViewById(R.id.login_activity_coordinator) as CoordinatorLayout }
     private val api by lazy { LoginApiProvider.get() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,7 +40,7 @@ class LoginActivity : BaseActivity() {
 
     private val onLoginFailure: (Throwable) -> Unit = {
         Log.e("On Login Failure", "", it)
-        val snackbar = Snackbar.make(submitButton, R.string.login_activity_login_failure, Snackbar.LENGTH_INDEFINITE)
+        val snackbar = Snackbar.make(coordinator, R.string.login_activity_login_failure, Snackbar.LENGTH_INDEFINITE)
         snackbar.setAction(R.string.login_activity_login_failure_action, { snackbar.dismiss() })
                 .show()
     }
