@@ -13,6 +13,8 @@ import pl.elpassion.eldebata.debate.api.DebateData
 class VotingActivity : BaseActivity() {
 
     val api by lazy { DebateApiProvider.get() }
+    val positiveVote by lazy { findViewById(R.id.voting_activity_positive_vote_button) as TextView }
+    val topic by lazy { findViewById(R.id.voting_activity_debate_topic) as TextView }
 
     companion object {
         fun start(context: Context) {
@@ -28,8 +30,8 @@ class VotingActivity : BaseActivity() {
     }
 
     val onGetDebateDataSuccess: (DebateData) -> Unit = {
-        val topic = findViewById(R.id.voting_activity_debate_topic) as TextView
         topic.text = it.topic
+        positiveVote.text = it.answers.positive.value
     }
 
     val onGetDebateDataFailure: (Throwable) -> Unit = {}

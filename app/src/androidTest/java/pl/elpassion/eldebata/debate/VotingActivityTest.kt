@@ -13,6 +13,7 @@ import pl.elpassion.eldebata.debate.api.DebateApi
 import pl.elpassion.eldebata.debate.api.DebateApiProvider
 import pl.elpassion.eldebata.factories.DebateDataFactory.debateTopic
 import pl.elpassion.eldebata.factories.DebateDataFactory.newDebateData
+import pl.elpassion.eldebata.factories.DebateDataFactory.positiveAnswer
 import rx.Observable
 import org.mockito.Mockito.`when` as on
 
@@ -34,5 +35,10 @@ class VotingActivityTest {
     @Test
     fun shouldHaveCorrectTopicAtTheStart() {
         onId(R.id.voting_activity_debate_topic).hasText(debateTopic)
+    }
+
+    @Test
+    fun shouldHavePositiveVoteButtonWithCorrectName() {
+        onId(R.id.voting_activity_positive_vote_button).hasText(positiveAnswer)
     }
 }
