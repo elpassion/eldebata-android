@@ -34,11 +34,14 @@ class VotingActivity : BaseActivity() {
         debateDataApi.getDebateData(AuthToken.read()!!).applySchedulers().subscribe(onGetDebateDataSuccess, onGetDebateDataFailure)
     }
 
-    val onGetDebateDataSuccess = { debateData :DebateData -> Unit
+    val onGetDebateDataSuccess = { debateData: DebateData ->
+        Unit
+        val authToken = AuthToken.read()!!
         topic.text = debateData.topic
         positiveVote.text = debateData.answers.positive.value
-        positiveVote.setOnClickListener { voteApi.getDebateData(AuthToken.read()!!, debateData.answers.positive) }
+        positiveVote.setOnClickListener { voteApi.vote(authToken, debateData.answers.positive) }
         negativeVote.text = debateData.answers.negative.value
+        negativeVote.setOnClickListener { voteApi.vote(authToken, debateData.answers.negative) }
         neutralVote.text = debateData.answers.neutral.value
     }
 

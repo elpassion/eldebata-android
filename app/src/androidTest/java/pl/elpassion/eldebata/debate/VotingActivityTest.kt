@@ -13,6 +13,7 @@ import pl.elpassion.eldebata.common.rule
 import pl.elpassion.eldebata.debate.api.*
 import pl.elpassion.eldebata.factories.DebateDataFactory.debateTopic
 import pl.elpassion.eldebata.factories.DebateDataFactory.negativeAnswer
+import pl.elpassion.eldebata.factories.DebateDataFactory.negativeVote
 import pl.elpassion.eldebata.factories.DebateDataFactory.neutralAnswer
 import pl.elpassion.eldebata.factories.DebateDataFactory.newDebateData
 import pl.elpassion.eldebata.factories.DebateDataFactory.positiveAnswer
@@ -61,8 +62,17 @@ class VotingActivityTest {
     
     @Test
     fun shouldMakeCallToApiWithCorrectAnswerWhenPositiveButtonIsClicked() {
-        onId(R.id.voting_activity_positive_vote_button).click()
-        verify(voteApi, times(1)).getDebateData("token", positiveVote)
+        clickAndVerifyApiCall(R.id.voting_activity_positive_vote_button, positiveVote)
+    }
+
+    @Test
+    fun shouldMakeCallToApiWithCorrectAnswerWhenNegativeButtonIsClicked() {
+        clickAndVerifyApiCall(R.id.voting_activity_negative_vote_button, negativeVote)
+    }
+
+    private fun clickAndVerifyApiCall(voteButtonId: Int, answer: Answer) {
+        onId(voteButtonId).click()
+        verify(voteApi, times(1)).vote("token", answer)
     }
 
 }
