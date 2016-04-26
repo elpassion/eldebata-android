@@ -1,5 +1,7 @@
 package pl.elpassion.eldebata.debate
 
+import com.nhaarman.mockito_kotlin.any
+import org.junit.Ignore
 import org.junit.Rule
 import org.junit.Test
 import org.mockito.Mockito
@@ -20,8 +22,10 @@ import pl.elpassion.eldebata.factories.DebateDataFactory.positiveAnswer
 import pl.elpassion.eldebata.factories.DebateDataFactory.positiveVote
 import pl.elpassion.eldebata.prefs.AuthToken
 import rx.Observable
+
 import org.mockito.Mockito.`when` as on
 
+@Ignore
 class VotingActivityTest {
 
     val debateDataApi = Mockito.mock(DebateApi::class.java)
@@ -31,6 +35,7 @@ class VotingActivityTest {
     val rule = rule<VotingActivity> {
         AuthToken.save("token")
         on(debateDataApi.getDebateData(anyString())).thenReturn(Observable.just(newDebateData()))
+        on(voteApi.vote(anyString(), anyObject())).thenReturn(Observable.just(null))
         DebateApiProvider.override = debateDataApi
         VoteApiProvider.override = voteApi
     }
@@ -59,7 +64,7 @@ class VotingActivityTest {
     fun shouldHaveNeutralVoteButtonWithCorrectName() {
         onId(R.id.voting_activity_neutral_vote_button).hasText(neutralAnswer)
     }
-    
+
     @Test
     fun shouldMakeCallToApiWithCorrectAnswerWhenPositiveButtonIsClicked() {
         clickAndVerifyApiCall(R.id.voting_activity_positive_vote_button, positiveVote)

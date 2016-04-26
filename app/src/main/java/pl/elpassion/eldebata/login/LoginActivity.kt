@@ -9,6 +9,7 @@ import android.widget.EditText
 import pl.elpassion.eldebata.R
 import pl.elpassion.eldebata.base.BaseActivity
 import pl.elpassion.eldebata.base.retrofit.applySchedulers
+import pl.elpassion.eldebata.debate.VotingActivity
 import pl.elpassion.eldebata.login.api.LoginApiProvider
 import pl.elpassion.eldebata.login.api.LoginResponse
 import pl.elpassion.eldebata.prefs.AuthToken
@@ -24,6 +25,8 @@ class LoginActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.login_activity)
         setUpSubmitButton()
+        if (AuthToken.isLoggedIn())
+            VotingActivity.start(this)
     }
 
     private fun setUpSubmitButton() {
@@ -36,6 +39,7 @@ class LoginActivity : BaseActivity() {
 
     private val onLoginSuccess: (LoginResponse) -> Unit = {
         AuthToken.save(it.authToken)
+        VotingActivity.start(this)
     }
 
     private val onLoginFailure: (Throwable) -> Unit = {

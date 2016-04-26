@@ -11,7 +11,7 @@ object DebateApiProvider : Provider<DebateApi> ({
 })
 
 interface DebateApi {
-    @GET("/debate")
+    @GET("debate")
     fun getDebateData(@Header("Authorization") authToken: String) : Observable<DebateData>
 }
 

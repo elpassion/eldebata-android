@@ -1,7 +1,10 @@
 <resources>
     <string name="app_name">ElDebata</string>
-    <string name="login_activity_pin_number_hint">Pin number</string>
+    <string name="login_activity_pin_number_hint">Pin debaty</string>
     <string name="login_activity_login_button_label">Login</string>
-    <string name="login_activity_login_failure">Something went wrong, please try again.</string>
+    <string name="login_activity_login_failure">Opss, coś poszło nie tak, spróbuj ponownie</string>
     <string name="login_activity_login_failure_action">DISMISS</string>
+    <string name="voting_activity_get_debate_data_failure">Opss, coś poszło nie tak, spróbuj ponownie</string>
+    <string name="voting_activity_get_debate_data_retry">PONÓW</string>
+    <string name="login_activity_welcome">Cześć!</string>
 </resources>

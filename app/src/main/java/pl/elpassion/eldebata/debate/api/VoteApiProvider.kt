@@ -13,6 +13,6 @@ object VoteApiProvider : Provider<VoteApi> ({
 
 interface VoteApi {
 
-    @POST("/vote.json")
-    fun vote(@Header("Authorization") authToken: String, @Body vote: Answer): Observable<Void>
+    @POST("vote.json")
+    fun vote(@Header("Authorization") authToken: String, @Body vote: Answer?): Observable<Void>
 }

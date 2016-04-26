@@ -8,4 +8,5 @@
     <dimen name="voting_activity_vote_button_horizontal_margin">50dp</dimen>
     <dimen name="gravity_activity_vote_button_vertical_padding">30dp</dimen>
     <dimen name="voting_activity_vote_button_text_size">30sp</dimen>
+    <dimen name="login_activity_welcom_text_size">30sp</dimen>
 </resources>

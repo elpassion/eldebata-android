@@ -3,14 +3,18 @@ package pl.elpassion.eldebata.debate
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.support.design.widget.Snackbar
+import android.util.Log
 import android.widget.TextView
 import pl.elpassion.eldebata.R
 import pl.elpassion.eldebata.base.BaseActivity
 import pl.elpassion.eldebata.base.retrofit.applySchedulers
+import pl.elpassion.eldebata.debate.api.Answer
 import pl.elpassion.eldebata.debate.api.DebateApiProvider
 import pl.elpassion.eldebata.debate.api.DebateData
 import pl.elpassion.eldebata.debate.api.VoteApiProvider
 import pl.elpassion.eldebata.prefs.AuthToken
+import rx.Subscription
 
 class VotingActivity : BaseActivity() {
 
@@ -20,6 +24,8 @@ class VotingActivity : BaseActivity() {
     val positiveVote by lazy { findViewById(R.id.voting_activity_positive_vote_button) as TextView }
     val negativeVote by lazy { findViewById(R.id.voting_activity_negative_vote_button) as TextView }
     val neutralVote by lazy { findViewById(R.id.voting_activity_neutral_vote_button) as TextView }
+    val authToken = AuthToken.read()!!
+    var subscription: Subscription? = null
 
     companion object {
         fun start(context: Context) {
@@ -31,43 +37,65 @@ class VotingActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.voting_activity)
-        val authToken = AuthToken.read()
-        debateDataApi.getDebateData(authToken!!).applySchedulers().subscribe(onGetDebateDataSuccess, onGetDebateDataFailure)
+        loadDebateData()
     }
 
-    val onGetDebateDataSuccess = { debateData: DebateData ->
-        Unit
-        val authToken = AuthToken.read()!!
+    private fun loadDebateData() {
+        subscription?.unsubscribe()
+        subscription = debateDataApi.getDebateData(authToken)
+                .applySchedulers()
+                .subscribe(onGetDebateDataSuccess, onGetDebateDataFailure)
+    }
+
+    val onGetDebateDataSuccess = { debateData: DebateData -> Unit
         topic.text = debateData.topic
-        setUpButtons(authToken, debateData)
+        setUpButtons(debateData)
     }
 
-    private fun setUpButtons(authToken: String, debateData: DebateData) {
-        setUpPositiveButton(authToken, debateData)
-        setUpNegativeButton(authToken, debateData)
-        setUpNeutralButton(authToken, debateData)
+    private fun setUpButtons(debateData: DebateData) {
+        setUpPositiveButton(debateData.answers.positive)
+        setUpNegativeButton(debateData.answers.negative)
+        setUpNeutralButton(debateData.answers.neutral)
     }
 
-    private fun setUpPositiveButton(authToken: String, debateData: DebateData) {
-        positiveVote.text = debateData.answers.positive.value
+    private fun setUpPositiveButton(answer: Answer) {
+        positiveVote.text = answer.value
         positiveVote.setOnClickListener {
-            voteApi.vote(authToken, debateData.answers.positive)
+            vote(answer)
         }
     }
 
-    private fun setUpNegativeButton(authToken: String, debateData: DebateData) {
-        negativeVote.text = debateData.answers.negative.value
+    private fun setUpNegativeButton(answer: Answer) {
+        negativeVote.text = answer.value
         negativeVote.setOnClickListener {
-            voteApi.vote(authToken, debateData.answers.negative)
+            vote(answer)
         }
     }
 
-    private fun setUpNeutralButton(authToken: String, debateData: DebateData) {
-        neutralVote.text = debateData.answers.neutral.value
+    private fun setUpNeutralButton(answer: Answer) {
+        neutralVote.text = answer.value
         neutralVote.setOnClickListener {
-            voteApi.vote(authToken, debateData.answers.neutral)
+            vote(answer)
         }
     }
 
-    val onGetDebateDataFailure: (Throwable) -> Unit = {}
+    private fun vote(answer: Answer) {
+        subscription?.unsubscribe()
+        subscription = voteApi.vote(authToken, answer)
+                .applySchedulers().subscribe(onVoteSuccess, onVoteFailure)
+    }
+
+    val onVoteSuccess: (Void) -> Unit = {
+
+    }
+
+    val onVoteFailure: (Throwable) -> Unit = {
+
+    }
+
+    val onGetDebateDataFailure: (Throwable) -> Unit = {
+        Log.e("GetDebateDataFailure", "", it)
+        Snackbar.make(topic, R.string.voting_activity_get_debate_data_failure, Snackbar.LENGTH_INDEFINITE)
+                .setAction(R.string.voting_activity_get_debate_data_retry, { loadDebateData() })
+    }
 }
