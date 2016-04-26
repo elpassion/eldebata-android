@@ -6,34 +6,37 @@ import org.mockito.Mockito
 import org.mockito.Mockito.times
 import org.mockito.Mockito.verify
 import pl.elpassion.eldebata.R
+import pl.elpassion.eldebata.common.click
 import pl.elpassion.eldebata.common.hasText
 import pl.elpassion.eldebata.common.onId
 import pl.elpassion.eldebata.common.rule
-import pl.elpassion.eldebata.debate.api.DebateApi
-import pl.elpassion.eldebata.debate.api.DebateApiProvider
+import pl.elpassion.eldebata.debate.api.*
 import pl.elpassion.eldebata.factories.DebateDataFactory.debateTopic
 import pl.elpassion.eldebata.factories.DebateDataFactory.negativeAnswer
 import pl.elpassion.eldebata.factories.DebateDataFactory.neutralAnswer
 import pl.elpassion.eldebata.factories.DebateDataFactory.newDebateData
 import pl.elpassion.eldebata.factories.DebateDataFactory.positiveAnswer
+import pl.elpassion.eldebata.factories.DebateDataFactory.positiveVote
 import pl.elpassion.eldebata.prefs.AuthToken
 import rx.Observable
 import org.mockito.Mockito.`when` as on
 
 class VotingActivityTest {
 
-    val api = Mockito.mock(DebateApi::class.java)
+    val debateDataApi = Mockito.mock(DebateApi::class.java)
+    val voteApi = Mockito.mock(VoteApi::class.java)
 
     @JvmField @Rule
     val rule = rule<VotingActivity> {
         AuthToken.save("token")
-        on(api.getDebateData("token")).thenReturn(Observable.just(newDebateData()))
-        DebateApiProvider.override = api
+        on(debateDataApi.getDebateData("token")).thenReturn(Observable.just(newDebateData()))
+        DebateApiProvider.override = debateDataApi
+        VoteApiProvider.override = voteApi
     }
 
     @Test
     fun apiShouldBeCalledAtTheActivityStart() {
-        verify(api, times(1)).getDebateData("token")
+        verify(debateDataApi, times(1)).getDebateData("token")
     }
 
     @Test
@@ -54,6 +57,12 @@ class VotingActivityTest {
     @Test
     fun shouldHaveNeutralVoteButtonWithCorrectName() {
         onId(R.id.voting_activity_neutral_vote_button).hasText(neutralAnswer)
+    }
+    
+    @Test
+    fun shouldMakeCallToApiWithCorrectAnswerWhenPositiveButtonIsClicked() {
+        onId(R.id.voting_activity_positive_vote_button).click()
+        verify(voteApi, times(1)).getDebateData("token", positiveVote)
     }
 
 }

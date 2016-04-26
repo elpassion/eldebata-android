@@ -19,4 +19,4 @@ class DebateData (val topic : String, val answers: Answers)
 
 class Answers (val positive : Answer, val negative: Answer, val neutral: Answer)
 
-class Answer (val id : Long, val value: String)
+data class Answer (val id : Long, val value: String)

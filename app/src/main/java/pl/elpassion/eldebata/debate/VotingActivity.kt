@@ -9,11 +9,13 @@ import pl.elpassion.eldebata.base.BaseActivity
 import pl.elpassion.eldebata.base.retrofit.applySchedulers
 import pl.elpassion.eldebata.debate.api.DebateApiProvider
 import pl.elpassion.eldebata.debate.api.DebateData
+import pl.elpassion.eldebata.debate.api.VoteApiProvider
 import pl.elpassion.eldebata.prefs.AuthToken
 
 class VotingActivity : BaseActivity() {
 
-    val api by lazy { DebateApiProvider.get() }
+    val debateDataApi by lazy { DebateApiProvider.get() }
+    val voteApi by lazy { VoteApiProvider.get() }
     val topic by lazy { findViewById(R.id.voting_activity_debate_topic) as TextView }
     val positiveVote by lazy { findViewById(R.id.voting_activity_positive_vote_button) as TextView }
     val negativeVote by lazy { findViewById(R.id.voting_activity_negative_vote_button) as TextView }
@@ -29,14 +31,15 @@ class VotingActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.voting_activity)
-        api.getDebateData(AuthToken.read()!!).applySchedulers().subscribe(onGetDebateDataSuccess, onGetDebateDataFailure)
+        debateDataApi.getDebateData(AuthToken.read()!!).applySchedulers().subscribe(onGetDebateDataSuccess, onGetDebateDataFailure)
     }
 
-    val onGetDebateDataSuccess: (DebateData) -> Unit = {
-        topic.text = it.topic
-        positiveVote.text = it.answers.positive.value
-        negativeVote.text = it.answers.negative.value
-        neutralVote.text = it.answers.neutral.value
+    val onGetDebateDataSuccess = { debateData :DebateData -> Unit
+        topic.text = debateData.topic
+        positiveVote.text = debateData.answers.positive.value
+        positiveVote.setOnClickListener { voteApi.getDebateData(AuthToken.read()!!, debateData.answers.positive) }
+        negativeVote.text = debateData.answers.negative.value
+        neutralVote.text = debateData.answers.neutral.value
     }
 
     val onGetDebateDataFailure: (Throwable) -> Unit = {}
