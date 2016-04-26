@@ -5,9 +5,9 @@
     <color name="colorAccent">#3F51B5</color>
     <color name="colorTextWhite">#FFFFFF</color>
     <color name="border_color">#eaeaea</color>
-    <color name="negative_color">#f42323</color>
-    <color name="positive_color">#23a0f4</color>
-    <color name="neutral_color">#138e36</color>
+    <color name="negative_color">#b94849</color>
+    <color name="positive_color">#548cca</color>
+    <color name="neutral_color">#64bb5c</color>
     <color name="black_color">#000000</color>
 
 
