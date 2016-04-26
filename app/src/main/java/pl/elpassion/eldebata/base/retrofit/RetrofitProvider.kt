@@ -11,7 +11,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object RetrofitProvider : Provider<Retrofit>({
     Retrofit.Builder()
-            .baseUrl("http:///api/v1/")
+            .baseUrl("http://192.168.1.156:3000/api/")
             .client(OkHttpClient.Builder().addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)).build())
             .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
             .addConverterFactory(GsonConverterFactory.create(GsonBuilder()

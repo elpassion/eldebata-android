@@ -31,7 +31,8 @@ class VotingActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.voting_activity)
-        debateDataApi.getDebateData(AuthToken.read()!!).applySchedulers().subscribe(onGetDebateDataSuccess, onGetDebateDataFailure)
+        val authToken = AuthToken.read()
+        debateDataApi.getDebateData(authToken!!).applySchedulers().subscribe(onGetDebateDataSuccess, onGetDebateDataFailure)
     }
 
     val onGetDebateDataSuccess = { debateData: DebateData -> Unit

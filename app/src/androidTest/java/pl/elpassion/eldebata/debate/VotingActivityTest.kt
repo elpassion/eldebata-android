@@ -3,8 +3,7 @@ package pl.elpassion.eldebata.debate
 import org.junit.Rule
 import org.junit.Test
 import org.mockito.Mockito
-import org.mockito.Mockito.times
-import org.mockito.Mockito.verify
+import org.mockito.Mockito.*
 import pl.elpassion.eldebata.R
 import pl.elpassion.eldebata.common.click
 import pl.elpassion.eldebata.common.hasText
@@ -31,14 +30,14 @@ class VotingActivityTest {
     @JvmField @Rule
     val rule = rule<VotingActivity> {
         AuthToken.save("token")
-        on(debateDataApi.getDebateData("token")).thenReturn(Observable.just(newDebateData()))
+        on(debateDataApi.getDebateData(anyString())).thenReturn(Observable.just(newDebateData()))
         DebateApiProvider.override = debateDataApi
         VoteApiProvider.override = voteApi
     }
 
     @Test
     fun apiShouldBeCalledAtTheActivityStart() {
-        verify(debateDataApi, times(1)).getDebateData("token")
+        verify(debateDataApi, times(1)).getDebateData("Token token=token")
     }
 
     @Test
@@ -78,7 +77,7 @@ class VotingActivityTest {
 
     private fun clickAndVerifyApiCall(voteButtonId: Int, answer: Answer) {
         onId(voteButtonId).click()
-        verify(voteApi, times(1)).vote("token", answer)
+        verify(voteApi, times(1)).vote("Token token=token", answer)
     }
 
 }

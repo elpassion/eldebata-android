@@ -9,8 +9,9 @@ object AuthToken {
     private val sharedPreferencesKey = "pl.elpassion.eldebata"
     val sharedPreferences = applicationContext.getSharedPreferences(sharedPreferencesKey, Context.MODE_PRIVATE)
 
-    fun save(authToken: String){
-         sharedPreferences.edit().putString(authTokenKey, authToken).commit()
+    fun save(authToken: String) {
+        val token = "Token token=" + authToken
+        sharedPreferences.edit().putString(authTokenKey, token).commit()
     }
 
     fun read(): String? {

@@ -32,7 +32,7 @@ class LoginActivitySuccessApiCallTest {
     @Test
     fun shouldReallySaveReturnedAuthToken() {
         loginWithCode("12345")
-        Assert.assertEquals("authToken", AuthToken.read())
+        Assert.assertEquals("Token token=authToken", AuthToken.read())
     }
 
 }
