@@ -24,24 +24,30 @@
             tools:text="Czy luzne podejscie do pracy grozi sukcesu firmy?" />
 
         <TextView
-            style="@style/VoteButton"
             android:id="@+id/voting_activity_positive_vote_button"
+            style="@style/VoteButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/vote_button"
+            android:textColor="@drawable/positive_button_text_selector"
             tools:text="Grozi" />
 
         <TextView
-            style="@style/VoteButton"
             android:id="@+id/voting_activity_negative_vote_button"
+            style="@style/VoteButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/vote_button"
+            android:textColor="@drawable/negative_button_text_selector"
             tools:text="Nie grozi" />
 
         <TextView
-            style="@style/VoteButton"
+            android:textColor="@drawable/neutral_button_text_selector"
             android:id="@+id/voting_activity_neutral_vote_button"
+            style="@style/VoteButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/vote_button"
             tools:text="Nie wiem" />
 
 

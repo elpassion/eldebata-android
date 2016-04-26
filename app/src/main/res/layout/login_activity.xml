@@ -33,7 +33,7 @@
             android:paddingRight="30dp"
             android:gravity="center"
             android:text="Aby móc głosować, wpisz PIN debaty"
-            android:textSize="28sp"
+            android:textSize="24sp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 

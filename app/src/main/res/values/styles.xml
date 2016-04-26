@@ -6,12 +6,12 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:textColor">@color/black_color</item>
     </style>
 
     <style name="VoteButton">
         <item name="android:layout_marginLeft">@dimen/voting_activity_vote_button_horizontal_margin</item>
         <item name="android:layout_marginRight">@dimen/voting_activity_vote_button_horizontal_margin</item>
-        <item name="android:background">@drawable/vote_button</item>
         <item name="android:gravity">center</item>
         <item name="android:layout_marginBottom">@dimen/activity_vertical_margin</item>
         <item name="android:paddingTop">@dimen/gravity_activity_vote_button_vertical_padding</item>
