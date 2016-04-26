@@ -22,12 +22,15 @@
             android:layout_height="0dp"/>
 
         <TextView
+            android:textColor="@color/colorTextWhite"
             android:gravity="center"
             android:text="@string/login_activity_welcome"
             android:textSize="@dimen/login_activity_welcom_text_size"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
+
         <TextView
+            android:textColor="@color/colorTextWhite"
             android:paddingBottom="30dp"
             android:paddingTop="30dp"
             android:paddingLeft="30dp"
@@ -45,6 +48,7 @@
             android:layout_height="wrap_content">
 
             <EditText
+                android:textColor="@color/colorTextWhite"
                 android:maxLength="5"
                 android:textSize="40dp"
                 android:layout_marginStart="30dp"
