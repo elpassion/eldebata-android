@@ -35,15 +35,38 @@ class VotingActivity : BaseActivity() {
         debateDataApi.getDebateData(authToken!!).applySchedulers().subscribe(onGetDebateDataSuccess, onGetDebateDataFailure)
     }
 
-    val onGetDebateDataSuccess = { debateData: DebateData -> Unit
+    val onGetDebateDataSuccess = { debateData: DebateData ->
+        Unit
         val authToken = AuthToken.read()!!
         topic.text = debateData.topic
+        setUpButtons(authToken, debateData)
+    }
+
+    private fun setUpButtons(authToken: String, debateData: DebateData) {
+        setUpPositiveButton(authToken, debateData)
+        setUpNegativeButton(authToken, debateData)
+        setUpNeutralButton(authToken, debateData)
+    }
+
+    private fun setUpPositiveButton(authToken: String, debateData: DebateData) {
         positiveVote.text = debateData.answers.positive.value
-        positiveVote.setOnClickListener { voteApi.vote(authToken, debateData.answers.positive) }
+        positiveVote.setOnClickListener {
+            voteApi.vote(authToken, debateData.answers.positive)
+        }
+    }
+
+    private fun setUpNegativeButton(authToken: String, debateData: DebateData) {
         negativeVote.text = debateData.answers.negative.value
-        negativeVote.setOnClickListener { voteApi.vote(authToken, debateData.answers.negative) }
+        negativeVote.setOnClickListener {
+            voteApi.vote(authToken, debateData.answers.negative)
+        }
+    }
+
+    private fun setUpNeutralButton(authToken: String, debateData: DebateData) {
         neutralVote.text = debateData.answers.neutral.value
-        neutralVote.setOnClickListener { voteApi.vote(authToken, debateData.answers.neutral) }
+        neutralVote.setOnClickListener {
+            voteApi.vote(authToken, debateData.answers.neutral)
+        }
     }
 
     val onGetDebateDataFailure: (Throwable) -> Unit = {}
