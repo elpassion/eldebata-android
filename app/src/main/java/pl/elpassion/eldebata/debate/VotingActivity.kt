@@ -9,6 +9,7 @@ import pl.elpassion.eldebata.base.BaseActivity
 import pl.elpassion.eldebata.base.retrofit.applySchedulers
 import pl.elpassion.eldebata.debate.api.DebateApiProvider
 import pl.elpassion.eldebata.debate.api.DebateData
+import pl.elpassion.eldebata.prefs.AuthToken
 
 class VotingActivity : BaseActivity() {
 
@@ -28,7 +29,7 @@ class VotingActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.voting_activity)
-        api.getDebateData().applySchedulers().subscribe(onGetDebateDataSuccess, onGetDebateDataFailure)
+        api.getDebateData(AuthToken.read()!!).applySchedulers().subscribe(onGetDebateDataSuccess, onGetDebateDataFailure)
     }
 
     val onGetDebateDataSuccess: (DebateData) -> Unit = {

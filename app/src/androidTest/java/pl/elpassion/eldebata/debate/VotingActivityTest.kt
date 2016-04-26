@@ -16,6 +16,7 @@ import pl.elpassion.eldebata.factories.DebateDataFactory.negativeAnswer
 import pl.elpassion.eldebata.factories.DebateDataFactory.neutralAnswer
 import pl.elpassion.eldebata.factories.DebateDataFactory.newDebateData
 import pl.elpassion.eldebata.factories.DebateDataFactory.positiveAnswer
+import pl.elpassion.eldebata.prefs.AuthToken
 import rx.Observable
 import org.mockito.Mockito.`when` as on
 
@@ -25,13 +26,14 @@ class VotingActivityTest {
 
     @JvmField @Rule
     val rule = rule<VotingActivity> {
-        on(api.getDebateData()).thenReturn(Observable.just(newDebateData()))
+        AuthToken.save("token")
+        on(api.getDebateData("token")).thenReturn(Observable.just(newDebateData()))
         DebateApiProvider.override = api
     }
 
     @Test
     fun apiShouldBeCalledAtTheActivityStart() {
-        verify(api, times(1)).getDebateData()
+        verify(api, times(1)).getDebateData("token")
     }
 
     @Test
@@ -53,4 +55,5 @@ class VotingActivityTest {
     fun shouldHaveNeutralVoteButtonWithCorrectName() {
         onId(R.id.voting_activity_neutral_vote_button).hasText(neutralAnswer)
     }
+
 }
