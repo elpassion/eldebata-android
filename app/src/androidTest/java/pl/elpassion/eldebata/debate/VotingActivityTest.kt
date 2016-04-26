@@ -15,6 +15,7 @@ import pl.elpassion.eldebata.factories.DebateDataFactory.debateTopic
 import pl.elpassion.eldebata.factories.DebateDataFactory.negativeAnswer
 import pl.elpassion.eldebata.factories.DebateDataFactory.negativeVote
 import pl.elpassion.eldebata.factories.DebateDataFactory.neutralAnswer
+import pl.elpassion.eldebata.factories.DebateDataFactory.neutralVote
 import pl.elpassion.eldebata.factories.DebateDataFactory.newDebateData
 import pl.elpassion.eldebata.factories.DebateDataFactory.positiveAnswer
 import pl.elpassion.eldebata.factories.DebateDataFactory.positiveVote
@@ -68,6 +69,11 @@ class VotingActivityTest {
     @Test
     fun shouldMakeCallToApiWithCorrectAnswerWhenNegativeButtonIsClicked() {
         clickAndVerifyApiCall(R.id.voting_activity_negative_vote_button, negativeVote)
+    }
+
+    @Test
+    fun shouldMakeCallToApiWithCorrectAnswerWhenNeutralButtonIsClicked() {
+        clickAndVerifyApiCall(R.id.voting_activity_neutral_vote_button, neutralVote)
     }
 
     private fun clickAndVerifyApiCall(voteButtonId: Int, answer: Answer) {

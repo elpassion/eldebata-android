@@ -34,8 +34,7 @@ class VotingActivity : BaseActivity() {
         debateDataApi.getDebateData(AuthToken.read()!!).applySchedulers().subscribe(onGetDebateDataSuccess, onGetDebateDataFailure)
     }
 
-    val onGetDebateDataSuccess = { debateData: DebateData ->
-        Unit
+    val onGetDebateDataSuccess = { debateData: DebateData -> Unit
         val authToken = AuthToken.read()!!
         topic.text = debateData.topic
         positiveVote.text = debateData.answers.positive.value
@@ -43,6 +42,7 @@ class VotingActivity : BaseActivity() {
         negativeVote.text = debateData.answers.negative.value
         negativeVote.setOnClickListener { voteApi.vote(authToken, debateData.answers.negative) }
         neutralVote.text = debateData.answers.neutral.value
+        neutralVote.setOnClickListener { voteApi.vote(authToken, debateData.answers.neutral) }
     }
 
     val onGetDebateDataFailure: (Throwable) -> Unit = {}
