@@ -15,7 +15,7 @@ interface LoginApi {
 
     @FormUrlEncoded
     @POST("login")
-    fun login(@Field("code") ticketType: String): Observable<LoginResponse>
+    fun login(@Field("code") code: String): Observable<LoginResponse>
 }
 
 data class LoginResponse(val authToken: String)
