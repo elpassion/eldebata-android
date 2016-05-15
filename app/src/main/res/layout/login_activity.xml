@@ -1,45 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout
-    android:id="@+id/login_activity_coordinator"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/login_activity_coordinator"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".login.LoginActivity">
 
     <LinearLayout
-        android:background="@drawable/login_background"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@drawable/login_background"
         android:gravity="center"
         android:orientation="vertical"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <View
-            android:layout_weight="1"
             android:layout_width="0dp"
-            android:layout_height="0dp"/>
+            android:layout_height="0dp"
+            android:layout_weight="1" />
 
         <TextView
-            android:textColor="@color/colorTextWhite"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:gravity="center"
             android:text="@string/login_activity_welcome"
-            android:textSize="@dimen/login_activity_welcome_text_size"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:textColor="@color/colorTextWhite"
+            android:textSize="@dimen/login_activity_welcome_text_size" />
 
         <TextView
-            android:textColor="@color/colorTextWhite"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
             android:paddingBottom="30dp"
-            android:paddingTop="30dp"
             android:paddingLeft="30dp"
             android:paddingRight="30dp"
-            android:gravity="center"
+            android:paddingTop="30dp"
             android:text="@string/login_activity_information_message"
-            android:textSize="24sp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:textColor="@color/colorTextWhite"
+            android:textSize="24sp" />
 
 
         <android.support.design.widget.TextInputLayout
@@ -48,36 +47,36 @@
             android:layout_height="wrap_content">
 
             <EditText
-                android:textColor="@color/colorTextWhite"
-                android:maxLength="5"
-                android:textSize="40sp"
-                android:layout_marginStart="30dp"
-                android:layout_marginEnd="30dp"
                 android:id="@+id/login_activity_pin_number_edit_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="30dp"
+                android:layout_marginStart="30dp"
                 android:gravity="center"
                 android:inputType="number"
+                android:maxLength="5"
+                android:textColor="@color/colorTextWhite"
+                android:textSize="40sp"
                 tools:text="12345" />
 
         </android.support.design.widget.TextInputLayout>
 
         <View
-            android:layout_weight="1"
             android:layout_width="0dp"
-            android:layout_height="0dp"/>
+            android:layout_height="0dp"
+            android:layout_weight="1" />
 
         <TextView
-            android:textSize="20sp"
-            android:clickable="true"
-            android:textColor="@color/colorTextWhite"
-            android:background="@drawable/button_selector"
-            android:padding="@dimen/default_padding_value"
-            android:gravity="center"
             android:id="@+id/login_activity_login_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/login_activity_login_button_label" />
+            android:background="@drawable/button_selector"
+            android:clickable="true"
+            android:gravity="center"
+            android:padding="@dimen/default_padding_value"
+            android:text="@string/login_activity_login_button_label"
+            android:textColor="@color/colorTextWhite"
+            android:textSize="20sp" />
     </LinearLayout>
 
 
