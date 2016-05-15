@@ -4,6 +4,8 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.Snackbar
+import android.support.design.widget.Snackbar.LENGTH_INDEFINITE
+import android.support.design.widget.Snackbar.LENGTH_LONG
 import android.util.Log
 import android.widget.TextView
 import pl.elpassion.eldebata.R
@@ -86,16 +88,19 @@ class VotingActivity : BaseActivity() {
     }
 
     val onVoteSuccess: (Void) -> Unit = {
-
+        Snackbar.make(topic, R.string.voting_activity_vote_success, LENGTH_LONG)
+                .show()
     }
 
     val onVoteFailure: (Throwable) -> Unit = {
-
+        Snackbar.make(topic, R.string.voting_activity_vote_failure, LENGTH_LONG)
+                .show()
     }
 
     val onGetDebateDataFailure: (Throwable) -> Unit = {
         Log.e("GetDebateDataFailure", "", it)
-        Snackbar.make(topic, R.string.voting_activity_get_debate_data_failure, Snackbar.LENGTH_INDEFINITE)
+        Snackbar.make(topic, R.string.voting_activity_get_debate_data_failure, LENGTH_INDEFINITE)
                 .setAction(R.string.voting_activity_get_debate_data_retry, { loadDebateData() })
+                .show()
     }
 }

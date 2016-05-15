@@ -6,5 +6,7 @@
     <string name="login_activity_login_failure_action">DISMISS</string>
     <string name="voting_activity_get_debate_data_failure">Opss, coś poszło nie tak, spróbuj ponownie</string>
     <string name="voting_activity_get_debate_data_retry">PONÓW</string>
+    <string name="voting_activity_vote_success">Twój głos został oddany.</string>
+    <string name="voting_activity_vote_failure">Oddanie głosu nie powiodło się, spróbuj ponownie.</string>
     <string name="login_activity_welcome">Cześć!</string>
 </resources>
