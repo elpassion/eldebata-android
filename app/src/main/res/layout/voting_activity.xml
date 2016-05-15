@@ -29,7 +29,7 @@
             style="@style/VoteButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/vote_button"
+            android:background="@drawable/positive_button_background"
             android:textColor="@drawable/positive_button_text_selector"
             tools:text="Grozi" />
 
@@ -38,7 +38,7 @@
             style="@style/VoteButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/vote_button"
+            android:background="@drawable/negative_button_background"
             android:textColor="@drawable/negative_button_text_selector"
             tools:text="Nie grozi" />
 
@@ -48,7 +48,7 @@
             style="@style/VoteButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/vote_button"
+            android:background="@drawable/neutral_button_background"
             tools:text="Nie wiem" />
 
 
