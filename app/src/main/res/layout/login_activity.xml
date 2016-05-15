@@ -25,7 +25,7 @@
             android:textColor="@color/colorTextWhite"
             android:gravity="center"
             android:text="@string/login_activity_welcome"
-            android:textSize="@dimen/login_activity_welcom_text_size"
+            android:textSize="@dimen/login_activity_welcome_text_size"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
@@ -36,7 +36,7 @@
             android:paddingLeft="30dp"
             android:paddingRight="30dp"
             android:gravity="center"
-            android:text="Aby móc głosować, wpisz PIN debaty"
+            android:text="@string/login_activity_information_message"
             android:textSize="24sp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
@@ -50,7 +50,7 @@
             <EditText
                 android:textColor="@color/colorTextWhite"
                 android:maxLength="5"
-                android:textSize="40dp"
+                android:textSize="40sp"
                 android:layout_marginStart="30dp"
                 android:layout_marginEnd="30dp"
                 android:id="@+id/login_activity_pin_number_edit_text"

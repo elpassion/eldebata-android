@@ -9,4 +9,5 @@
     <string name="voting_activity_vote_success">Twój głos został oddany.</string>
     <string name="voting_activity_vote_failure">Oddanie głosu nie powiodło się, spróbuj ponownie.</string>
     <string name="login_activity_welcome">Cześć!</string>
+    <string name="login_activity_information_message">Aby móc głosować, wpisz PIN debaty</string>
 </resources>
